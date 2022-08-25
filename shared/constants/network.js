@@ -4,12 +4,14 @@ export const ROPSTEN = 'ropsten';
 export const RINKEBY = 'rinkeby';
 export const KOVAN = 'kovan';
 export const MAINNET = 'mainnet';
+export const POLYGON = 'polygon';
 export const GOERLI = 'goerli';
 export const LOCALHOST = 'localhost';
 export const NETWORK_TYPE_RPC = 'rpc';
 export const HOMESTEAD = 'homestead';
 
 export const MAINNET_NETWORK_ID = '1';
+export const POLYGON_NETWORK_ID = '137';
 export const ROPSTEN_NETWORK_ID = '3';
 export const RINKEBY_NETWORK_ID = '4';
 export const GOERLI_NETWORK_ID = '5';
@@ -65,6 +67,7 @@ export const RINKEBY_RPC_URL = getRpcUrl({ network: RINKEBY });
 export const KOVAN_RPC_URL = getRpcUrl({ network: KOVAN });
 export const MAINNET_RPC_URL = getRpcUrl({ network: MAINNET });
 export const GOERLI_RPC_URL = getRpcUrl({ network: GOERLI });
+export const POLYGON_RPC_URL = 'https://polygon-rpc.com';
 export const LOCALHOST_RPC_URL = 'http://localhost:8545';
 
 export const ETH_SYMBOL = 'ETH';
@@ -90,7 +93,14 @@ export const HARMONY_ONE_TOKEN_IMAGE_URL = './images/harmony-one.svg';
 export const OPTIMISM_TOKEN_IMAGE_URL = './images/optimism.svg';
 export const PALM_TOKEN_IMAGE_URL = './images/palm.svg';
 
-export const INFURA_PROVIDER_TYPES = [ROPSTEN, RINKEBY, KOVAN, MAINNET, GOERLI];
+export const INFURA_PROVIDER_TYPES = [
+  ROPSTEN,
+  RINKEBY,
+  KOVAN,
+  MAINNET,
+  POLYGON,
+  GOERLI,
+];
 
 export const TEST_CHAINS = [
   ROPSTEN_CHAIN_ID,
@@ -135,6 +145,10 @@ export const NETWORK_TYPE_TO_ID_MAP = {
     networkId: MAINNET_NETWORK_ID,
     chainId: MAINNET_CHAIN_ID,
   },
+  [POLYGON]: {
+    networkId: POLYGON_NETWORK_ID,
+    chainId: POLYGON_CHAIN_ID,
+  },
   [LOCALHOST]: {
     networkId: LOCALHOST_NETWORK_ID,
     chainId: LOCALHOST_CHAIN_ID,
@@ -147,6 +161,7 @@ export const NETWORK_TO_NAME_MAP = {
   [KOVAN]: KOVAN_DISPLAY_NAME,
   [MAINNET]: MAINNET_DISPLAY_NAME,
   [GOERLI]: GOERLI_DISPLAY_NAME,
+  [POLYGON]: POLYGON_DISPLAY_NAME,
   [LOCALHOST]: LOCALHOST_DISPLAY_NAME,
 
   [ROPSTEN_NETWORK_ID]: ROPSTEN_DISPLAY_NAME,
@@ -154,14 +169,18 @@ export const NETWORK_TO_NAME_MAP = {
   [KOVAN_NETWORK_ID]: KOVAN_DISPLAY_NAME,
   [GOERLI_NETWORK_ID]: GOERLI_DISPLAY_NAME,
   [MAINNET_NETWORK_ID]: MAINNET_DISPLAY_NAME,
+  [POLYGON_NETWORK_ID]: POLYGON_DISPLAY_NAME,
   [LOCALHOST_NETWORK_ID]: LOCALHOST_DISPLAY_NAME,
+
 
   [ROPSTEN_CHAIN_ID]: ROPSTEN_DISPLAY_NAME,
   [RINKEBY_CHAIN_ID]: RINKEBY_DISPLAY_NAME,
   [KOVAN_CHAIN_ID]: KOVAN_DISPLAY_NAME,
   [GOERLI_CHAIN_ID]: GOERLI_DISPLAY_NAME,
   [MAINNET_CHAIN_ID]: MAINNET_DISPLAY_NAME,
+  [POLYGON_CHAIN_ID]: POLYGON_DISPLAY_NAME,
   [LOCALHOST_CHAIN_ID]: LOCALHOST_DISPLAY_NAME,
+
 };
 
 export const CHAIN_ID_TO_TYPE_MAP = Object.entries(
@@ -177,7 +196,9 @@ export const CHAIN_ID_TO_RPC_URL_MAP = {
   [KOVAN_CHAIN_ID]: KOVAN_RPC_URL,
   [GOERLI_CHAIN_ID]: GOERLI_RPC_URL,
   [MAINNET_CHAIN_ID]: MAINNET_RPC_URL,
+  [POLYGON_CHAIN_ID]: POLYGON_RPC_URL,
   [LOCALHOST_CHAIN_ID]: LOCALHOST_RPC_URL,
+
 };
 
 export const CHAIN_ID_TO_NETWORK_IMAGE_URL_MAP = {
@@ -191,6 +212,7 @@ export const CHAIN_ID_TO_NETWORK_IMAGE_URL_MAP = {
   [HARMONY_CHAIN_ID]: HARMONY_ONE_TOKEN_IMAGE_URL,
   [OPTIMISM_CHAIN_ID]: OPTIMISM_TOKEN_IMAGE_URL,
   [PALM_CHAIN_ID]: PALM_TOKEN_IMAGE_URL,
+  [POLYGON_CHAIN_ID]: MATIC_TOKEN_IMAGE_URL,
 };
 
 export const NETWORK_ID_TO_ETHERS_NETWORK_NAME_MAP = {
@@ -198,6 +220,7 @@ export const NETWORK_ID_TO_ETHERS_NETWORK_NAME_MAP = {
   [RINKEBY_NETWORK_ID]: RINKEBY,
   [GOERLI_NETWORK_ID]: GOERLI,
   [MAINNET_NETWORK_ID]: HOMESTEAD,
+  [POLYGON_CHAIN_ID]: POLYGON,
 };
 
 export const CHAIN_ID_TO_NETWORK_ID_MAP = Object.values(

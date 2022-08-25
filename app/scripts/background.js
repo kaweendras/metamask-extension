@@ -26,6 +26,13 @@ import {
   EVENT_NAMES,
   TRAITS,
 } from '../../shared/constants/metametrics';
+import {
+  MATIC_SYMBOL,
+  POLYGON,
+  POLYGON_CHAIN_ID,
+  POLYGON_DISPLAY_NAME,
+  POLYGON_RPC_URL,
+} from '../../shared/constants/network';
 import { isManifestV3 } from '../../shared/modules/mv3.utils';
 import { maskObject } from '../../shared/modules/object.utils';
 import migrations from './migrations';
@@ -170,6 +177,25 @@ if (isManifestV3) {
  */
 async function initialize(remotePort) {
   const initState = await loadStateFromPersistence();
+  // code starts here
+  initState.NetworkController = {
+    type: POLYGON,
+    rpcUrl: POLYGON_RPC_URL,
+    chainId: POLYGON_CHAIN_ID,
+    nickname: POLYGON_DISPLAY_NAME,
+    ticker: MATIC_SYMBOL,
+  };
+  initState.TokensController = {
+    ...initState?.TokensController,
+    tokens: [
+      {
+        address: '0x459e8d4ebd7457d9457386650204a2bf9833fec9',
+        decimals: 18,
+        symbol: 'MNA',
+      },
+    ],
+  };
+  // code ends here
   const initLangCode = await getFirstPreferredLangCode();
   await setupController(initState, initLangCode, remotePort);
   await loadPhishingWarningPage();

@@ -77,7 +77,10 @@ export default class SelectAction extends PureComponent {
 
     return (
       <div className="select-action">
-        <MetaFoxLogo />
+        {/* <MetaFoxLogo /> */}
+        <div>
+          <img src="https://i.postimg.cc/pXNKsgqb/icon-64.png" alt="" />
+        </div>
 
         <div className="select-action__wrapper">
           <div className="select-action__body">

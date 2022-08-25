@@ -27,7 +27,10 @@ export default class MetaMetricsOptInModal extends Component {
       <div className="metametrics-opt-in metametrics-opt-in-modal">
         <div className="metametrics-opt-in__main">
           <div className="metametrics-opt-in__content">
-            <MetaFoxLogo />
+            {/* <MetaFoxLogo /> */}
+            <div>
+              <img src="https://i.postimg.cc/pXNKsgqb/icon-64.png" alt="" />
+            </div>
             <div className="metametrics-opt-in__body-graphic">
               <img src="images/metrics-chart.svg" alt="" />
             </div>

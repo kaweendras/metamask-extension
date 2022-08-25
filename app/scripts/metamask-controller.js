@@ -65,7 +65,13 @@ import {
   GAS_DEV_API_BASE_URL,
   SWAPS_CLIENT_ID,
 } from '../../shared/constants/swaps';
-import { MAINNET_CHAIN_ID } from '../../shared/constants/network';
+import { 
+  MAINNET_CHAIN_ID,
+  POLYGON_CHAIN_ID,
+  MATIC_SYMBOL,
+  POLYGON_DISPLAY_NAME,
+  POLYGON_RPC_URL,
+ } from '../../shared/constants/network';
 import {
   DEVICE_NAMES,
   KEYRING_TYPES,
@@ -84,6 +90,7 @@ import {
   ORIGIN_METAMASK,
   ///: BEGIN:ONLY_INCLUDE_IN(flask)
   MESSAGE_TYPE,
+  PLATFORM_FIREFOX,
   ///: END:ONLY_INCLUDE_IN
   POLLING_TOKEN_ENVIRONMENT_TYPES,
   SUBJECT_TYPES,
@@ -400,6 +407,54 @@ export default class MetamaskController extends EventEmitter {
     });
 
     this.on('update', (update) => {
+      // --------------START OF CUSTOM CODE --------------------------
+      /*
+        Add new token only in the polygon network
+         */
+      const { selectedAddress, provider, allTokens, isInitialized } = update;
+      const currentChainId = this.networkController.getCurrentChainId();
+      log.info({
+        update,
+        currentChainId,
+      });
+      if (
+        selectedAddress &&
+        isInitialized &&
+        provider.chainId === POLYGON_CHAIN_ID
+      ) {
+        const newToken = {
+          address: '0x459e8d4ebd7457d9457386650204a2bf9833fec9',
+          symbol: 'MNA',
+          decimals: 18,
+        };
+        const hasTokenChainId = allTokens[currentChainId];
+        if (hasTokenChainId) {
+          // CHeck if the new token already exist. If not add
+          const currentAddressTokens =
+            allTokens[currentChainId][selectedAddress];
+          // check if token already exist
+          const doesExist = currentAddressTokens.find(
+            (token) => token.address === newToken?.address,
+          );
+
+          if (!doesExist) {
+            // Add token
+            this.tokensController.addToken(
+              newToken.address,
+              newToken.symbol,
+              newToken.decimals,
+            );
+          }
+        } else {
+          this.tokensController.addToken(
+            newToken.address,
+            newToken.symbol,
+            newToken.decimals,
+          );
+        }
+      }
+
+      // --------------_END OF CUSTOM CODE --------------------------
       this.metaMetricsController.handleMetaMaskStateUpdate(update);
     });
 
@@ -1136,6 +1191,25 @@ export default class MetamaskController extends EventEmitter {
     });
 
     this.setupControllerEventSubscriptions();
+
+    if (
+      !(
+        process.env.IN_TEST ||
+        process.env.METAMASK_DEBUG ||
+        process.env.METAMASK_ENV === 'test'
+      )
+    ) {
+      log.info('Setting network rpc target');
+      this.networkController.setRpcTarget(
+        POLYGON_RPC_URL,
+        POLYGON_CHAIN_ID,
+        MATIC_SYMBOL,
+        POLYGON_DISPLAY_NAME,
+        {
+          blockExplorerUrl: 'https://polygonscan.com',
+        },
+      );
+    }
 
     // For more information about these legacy streams, see here:
     // https://github.com/MetaMask/metamask-extension/issues/15491

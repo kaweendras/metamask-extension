@@ -5,16 +5,28 @@ import {
   KOVAN_CHAIN_ID,
   MAINNET,
   MAINNET_CHAIN_ID,
+  POLYGON,
+  POLYGON_CHAIN_ID,
   RINKEBY,
   RINKEBY_CHAIN_ID,
   ROPSTEN,
   ROPSTEN_CHAIN_ID,
   getRpcUrl,
   ETH_SYMBOL,
+  MATIC_SYMBOL,
   TEST_NETWORK_TICKER_MAP,
 } from '../../../../shared/constants/network';
 
 const defaultNetworksData = [
+  {
+    labelKey: POLYGON,
+    iconColor:'#2f80ed',
+    providerType: POLYGON,
+    rpcUrl: 'https://polygon-rpc.com',
+    chainId: POLYGON_CHAIN_ID,
+    ticker: MATIC_SYMBOL,
+    blockExplorerUrl: 'https://polygonscan.com',
+  },
   {
     labelKey: MAINNET,
     iconColor: '#29B6AF',

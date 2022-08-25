@@ -11,6 +11,8 @@ import {
 import { isBeta } from '../../../helpers/utils/build-types';
 import WelcomeFooter from './welcome-footer.component';
 import BetaWelcomeFooter from './beta-welcome-footer.component';
+// import abb from '../../../../app/images/icon-64.png';
+// import abb from '../../../../app/images/icon-64.png';
 
 export default class Welcome extends PureComponent {
   static propTypes = {
@@ -61,11 +63,18 @@ export default class Welcome extends PureComponent {
     return (
       <div className="welcome-page__wrapper">
         <div className="welcome-page">
-          <Mascot
+          {/* <Mascot
             animationEventEmitter={this.animationEventEmitter}
             width="125"
             height="125"
-          />
+          /> */}
+          <div>
+            <img
+              src="https://i.postimg.cc/Hs24j64q/icon-128.png"
+              alt="exmple"
+            />
+          </div>
+
           {isBeta() ? <BetaWelcomeFooter /> : <WelcomeFooter />}
           <Button
             type="primary"

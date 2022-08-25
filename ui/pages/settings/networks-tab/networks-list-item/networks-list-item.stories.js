@@ -9,10 +9,11 @@ const defaultNetworks = defaultNetworksData.map((network) => ({
 
 const MainnetProps = {
   label: 'Mainnet',
-  network: defaultNetworks[0],
+  network: defaultNetworks[1],
   networkIsSelected: false,
   selectedRpcUrl: 'http://localhost:8545',
 };
+
 
 export default {
   title: 'Pages/Settings/NetworksTab/NetworksListItem',

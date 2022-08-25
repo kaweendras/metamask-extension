@@ -28,7 +28,7 @@ const defaultNetworks = defaultNetworksData.map((network) => ({
 }));
 
 const MainnetProps = {
-  network: defaultNetworks[0],
+  network: defaultNetworks[5],
   networkIsSelected: false,
   selectedRpcUrl: 'http://localhost:8545',
 };
