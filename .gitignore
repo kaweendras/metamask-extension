@@ -31,8 +31,8 @@ storybook-build/
 coverage/
 jest-coverage/
 dist
-#builds/
-#builds.zip
+builds/
+builds.zip
 development/ts-migration-dashboard/build
 development/ts-migration-dashboard/intermediate
 
@@ -47,7 +47,7 @@ notes.txt
 
 .nyc_output
 
-#.metamaskrc
+.metamaskrc
 
 # TypeScript
 tsout/
